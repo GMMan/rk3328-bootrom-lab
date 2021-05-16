@@ -24,7 +24,7 @@ clean:
 		$(RM) *.o *.bin *.elf
 
 disasm: payload.bin
-		$(OBJDUMP) -D -m aarch64 -b binary --adjust-vma=0xff090000 $<
+		$(OBJDUMP) -D -m aarch64 -b binary --adjust-vma=0xff091000 $<
 
-rk3328_loader_v1.16.250.bin: payload.bin
+rk3328_loader_v1.16.250.bin: payload.bin CONFIG.ini
 		rkbin/tools/boot_merger CONFIG.ini
