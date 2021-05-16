@@ -5,11 +5,10 @@
 
 start:
     // Enable JTAG
-    ldr x0, =0xff10040c
-    ldr w1, [x0]
-    orr w1, w1, #0x1000
+    ldr x0, =0xff100010
+    ldr w1, =0x00f000a0
     str w1, [x0]
     // Retrieve reset vector
-    mrs x1, RVBAR_EL3
+    mrs x0, RVBAR_EL3
     // Spin
     b .
