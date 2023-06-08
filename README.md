@@ -1,7 +1,7 @@
-Rockchip RK3328 Bootrom Lab
-===========================
+Rockchip RK3126C Bootrom Lab
+============================
 
-This repo is for experimenting with Rockchip RK3328's bootrom.
+This repo is for experimenting with Rockchip RK3126C's bootrom.
 
 How to build
 ------------
@@ -18,9 +18,12 @@ Just enabling JTAG and dumping the bootrom.
 
 Findings
 --------
-Code 471 is the DRAM init program that gets loaded into SRAM at `0xff091000`.
-It has the four characters `RK32` as a magic number, followed by a jump
-instruction to the code's entry point. The DRAM init program appears to read
-values from `0xff090010` as some sort of parameters. For example, if it does
-not equal `5`, pinmux is changed to enable JTAG. So Code 471 is the earliest
-you can execute your own code unless you write stuff to another boot medium.
+One of the very first things the bootrom does after it establishes it is the
+primary core is disable debugging by disabling access from APB-AP. It does
+this by resetting bit 15 of the register at `0x20010000` in regular Rockchip
+fashion. This bit needs to be set for debugging to work, presumably while the
+CPU is in some low privilege level.
+
+Code 471 is the DRAM init program that gets loaded into SRAM at `0x10081000`.
+It has the four characters `RK31` as a magic number, followed by a jump
+instruction to the code's entry point.
