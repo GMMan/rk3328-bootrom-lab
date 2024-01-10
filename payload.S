@@ -12,5 +12,11 @@ start:
     //ldr w1, =0x00800080
     //str w1, [x0]
 
+    // Retrieve main and revision ID registers
+    mrs x0, MIDR_EL1
+    mrs x1, REVIDR_EL1
+    // Retrieve reset vector
+    mrs x2, RVBAR_EL3
+
     // Spin
     b .
