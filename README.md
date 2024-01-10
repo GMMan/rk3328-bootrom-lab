@@ -1,7 +1,7 @@
-Rockchip RK3328 Bootrom Lab
+Rockchip RK3326 Bootrom Lab
 ===========================
 
-This repo is for experimenting with Rockchip RK3328's bootrom.
+This repo is for experimenting with Rockchip RK3326's bootrom.
 
 How to build
 ------------
@@ -14,13 +14,15 @@ You can check your work by disassembling the built binary with `make disasm`.
 
 Current experiment
 ------------------
-Just enabling JTAG and dumping the bootrom.
+Just enabling JTAG and dumping the bootrom (via UART).
 
 Findings
 --------
-Code 471 is the DRAM init program that gets loaded into SRAM at `0xff091000`.
-It has the four characters `RK32` as a magic number, followed by a jump
-instruction to the code's entry point. The DRAM init program appears to read
-values from `0xff090010` as some sort of parameters. For example, if it does
-not equal `5`, pinmux is changed to enable JTAG. So Code 471 is the earliest
-you can execute your own code unless you write stuff to another boot medium.
+Code 471 is the DRAM init program that gets loaded into SRAM at `0xff0e1000`.
+It has the four characters `RK33` as a magic number, followed by a jump
+instruction to the code's entry point.
+
+It's more of the same as before, except JTAG doesn't actually seem to work. I
+could get a connection in OpenOCD, but when it tries to examine, it fails. So
+I think there's a lockout again, so I need to go find it. In the meantime, just
+dumping things through UART until I get JTAG working.
