@@ -1,7 +1,7 @@
-Rockchip RK3288 Bootrom Lab
+Rockchip RK3032 Bootrom Lab
 ===========================
 
-This repo is for experimenting with Rockchip RK3288's bootrom.
+This repo is for experimenting with Rockchip RK3032's bootrom.
 
 How to build
 ------------
@@ -18,6 +18,6 @@ Just enabling JTAG and dumping the bootrom.
 
 Findings
 --------
-Code 471 is the DRAM init program that gets loaded into SRAM at `0xff704000`.
-It has the four characters `RK32` as a magic number, followed by a jump
+Code 471 is the DRAM init program that gets loaded into SRAM at `0x10081000`.
+It has the four characters `RK30` as a magic number, followed by a jump
 instruction to the code's entry point.

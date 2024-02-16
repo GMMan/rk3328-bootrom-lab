@@ -1,6 +1,6 @@
 SECTIONS
 {
-    .text 0xff704000 : {
+    .text 0x10081000 : {
         *(.text)
     }
 }
