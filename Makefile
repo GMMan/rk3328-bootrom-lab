@@ -9,7 +9,7 @@ OBJDUMP = ${BINPATH}/aarch64-linux-gnu-objdump
 
 .PHONY: all clean disasm
 
-all: rk3326_loader_v2.08.135.bin
+all: rk3326_loader_jtag.bin
 
 %.bin: %.elf
 		$(OBJCOPY) -O binary $< $@
@@ -26,5 +26,5 @@ clean:
 disasm: payload.bin
 		$(OBJDUMP) -D -m aarch64 -b binary --adjust-vma=0xff0e1000 $<
 
-rk3326_loader_v2.08.135.bin: payload.bin CONFIG.ini
+rk3326_loader_jtag.bin: payload.bin CONFIG.ini
 		rkbin/tools/boot_merger CONFIG.ini
