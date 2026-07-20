@@ -9,7 +9,7 @@ OBJDUMP = ${BINPATH}/aarch64-linux-gnu-objdump
 
 .PHONY: all clean disasm
 
-all: rk3328_loader_v1.16.250.bin
+all: rk3328_loader_v1.16rk3328_loader_jtag.bin
 
 %.bin: %.elf
 		$(OBJCOPY) -O binary $< $@
